@@ -1,0 +1,14 @@
+#!/bin/sh
+
+echo ":: Entered custominit..."
+
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+mount -t devtmpfs dev /dev
+mount -t tmpfs run /run
+
+if [ -e /sys/firmware/efi ]; then
+  mount -t efivarfs efivarfs /sys/firmware/efi/efivars
+fi
+
+/sbin/getty 9600 tty1

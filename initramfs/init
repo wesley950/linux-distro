@@ -1,0 +1,14 @@
+#!/bin/sh
+
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+mount -t devtmpfs dev /dev
+mount -t tmpfs run /run
+
+if [ -e /sys/firmware/efi ]; then
+  mount -t efivarfs efivarfs /sys/firmware/efi/efivars
+fi
+
+mkdir /mnt
+mount -t ext4 /dev/sda /mnt
+exec chroot /mnt /sbin/init

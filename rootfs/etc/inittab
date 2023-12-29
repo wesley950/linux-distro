@@ -1,0 +1,5 @@
+::restart:/sbin/init
+::shutdown:sync
+::shutdown:umount -a
+::ctrlaltdel:/sbin/reboot
+::respawn:/etc/custominit
